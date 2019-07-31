@@ -1,0 +1,41 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+
+    <div class="listclass container"><br>
+
+      <form>
+        {% csrf_token %}
+
+        <input type="text" name="searchrequest" value="{{request.GET.searchrequest}}">
+        <input type="submit" class="btn btn-info" name="" value="Search">
+
+      </form>
+      <br><br><br><br>
+          {% for obj in question_list %}
+
+            <div class="container mycont">
+
+              <h3>{{obj.asked_ques}}</h3>
+              <img src="{{obj.upload.url}}" width="100" alt=""><br><br>
+              <h6 class="btn btn-info topicr">{{obj.topic_related}}</h6>
+              <h6>Asked By : {{obj.author}}</h6>
+              <h6>Asked on : {{obj.asked_date}}</h6>
+              <h6>Answer : {{obj.answer.count}}</h6>
+
+              <a href="{% url "question_detailview" slug=obj.slug %}">
+              <button class="btn btn-info" type="submit" name="button">View Answers</button></a>
+              <a href="{% url 'add_answer' slug=obj.slug %}"><button class="btn btn-info" type="submit" name="button">Add Answer</button></a>
+
+
+              <br><br>
+
+            </div>
+
+          {% endfor %}
+
+
+    </div>
+
+{% endblock %}

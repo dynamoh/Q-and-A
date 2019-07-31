@@ -1,0 +1,97 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<div class="jumbotron">
+
+
+  <div class="jumbotron  mycontdet">
+
+    <div class="container">
+
+      <h1 align="center" >{{question.asked_ques}}</h1>
+      <h4>Asked By :  {{question.author}}</h4>
+      <h4>Topic Related  :  {{question.topic_related}}</h4>
+      <h4>Asked on :  {{question.asked_date}}</h4>
+
+      {% if user.is_authenticated %}
+
+        <a href="{% url 'question_updateview' slug=question.slug %}"><button type="submit" class="btn btn-info" name="button">Update</button></a>
+        <a href="{% url 'question_deleteview' slug=question.slug %}"><button type="submit" class="btn btn-danger" name="button">Delete</button></a>
+
+
+      {% endif %}
+      <a href="{% url 'add_answer' slug=question.slug %}"><button type="submit" class="btn btn-info" name="button">Add Answer</button></a>
+
+    </div>
+
+  </div>
+
+
+
+<div class="jumbotron">
+  <div class="Container ansd">
+
+    <h1 align="center" >Answers</h1><br><br>
+
+    <form>
+      {% csrf_token %}
+
+      <input type="text" name="searchansrequest" value="{{request.GET.searchansrequest}}">
+      <input type="submit" class="btn btn-info" name="" value="Search">
+
+    </form><br><br><br><br>
+
+    {% for answer in question.answer.all %}
+
+    <div class="eachans">
+
+      {% if user.is_authenticated  %}
+
+      <h3>{{answer.ans_date}}</h3>
+
+      <p>{{answer.ques_ans}}</p>
+      <h3>Posted by: {{answer.author}}</h3>
+
+      <a href="{% url 'remove_answer' slug=answer.slug %}"><button type="submit" class="btn btn-info" name="button">Remove Answer</button></a><br><br>
+
+      {% endif %}
+
+
+    </div>
+
+      {% empty %}
+      No Answers
+
+    {% endfor %}
+    <br><br>
+
+
+  </div>
+
+</div>
+
+
+
+
+
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+{% endblock %}

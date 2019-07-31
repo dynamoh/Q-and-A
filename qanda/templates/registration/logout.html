@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+  <div class="jumbotron">
+
+    <h3>Are You Sure You want to Logout ?</h3>
+    <a href="{% url 'logout' %}"><button type="submit" class="btn btn-primary" name="button">Logout</button></a>
+
+
+  </div>
+
+
+{% endblock %}

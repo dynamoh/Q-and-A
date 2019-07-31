@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" href="{% static 'css/qanda.css' %}">
+
+
+  </head>
+  <body>
+
+    <nav class="navbar navbar-expand-lg navbar-light bg-light mynewnav" >
+      <a class="navbar-brand" href="/">Q&A Forum</a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav mr-auto">
+          <li class="nav-item">
+            <a class="nav-link" href="/">About us</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/list">Home</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="https://www.github.com">Github</a>
+          </li>
+
+        </ul>
+
+          {% if user.is_authenticated %}
+
+
+          <ul class='nav navbar-nav navbar-left'>
+
+            <li class="nav-item">
+              <a class="nav-link" href="/create">Ask Question</a>
+            </li>
+          </ul>
+
+
+            <ul class='nav navbar-nav navbar-right'>
+            <li class="nav-item ">
+              <a class="nav-link" href="/logout">Logout</a>
+            </li>
+
+            
+
+            <li class="nav-item">
+              <a class="nav-link userna"  >
+              <span>
+                  <img class="propic" src="{{user.profile.propic.url}}" alt="">
+              </span>    Welcome : {{user.username}}</a>
+            </li>
+
+
+          </ul>
+
+
+          {% else %}
+          <ul class='na navbar-nav navbar-right'>
+            <li class="nav-item">
+              <a class="nav-link" href="/accounts/login">Login</a>
+            </li>
+            <li class="nav-item ">
+              <a class="nav-link" href="/signup">Signup</a>
+            </li>
+          </ul>
+
+
+
+          {% endif %}
+
+
+
+
+
+      </div>
+    </nav>
+
+    <div class="allsec">
+
+      {% block content %}
+
+      {% endblock %}
+
+
+
+
+    </div>
+
+
+
+
+
+  </body>
+</html>

@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+    <div class="jumbotron">
+      <div class="container">
+
+        <h1 align="center" > Answer </h1>
+
+        <form method="POST">
+          {% csrf_token %}
+
+          {{form.as_p}}
+          <button class="btn btn-info" type="submit" name="button">Post Answer</button>
+        </form>
+
+      </div>
+
+    </div>
+
+
+{% endblock %}
