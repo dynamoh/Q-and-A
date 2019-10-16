@@ -124,7 +124,6 @@ USE_TZ = True
 EMAIL_USE_TLS = True
 EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_HOST_USER = 'guptaheet53@gmail.com'
-EMAIL_HOST_PASSWORD = 'dynamodynamo'
 EMAIL_PORT = 587
 
 
